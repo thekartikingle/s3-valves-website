@@ -1,0 +1,193 @@
+/* ============================================
+   FILE: app/globals.css
+   PURPOSE: Global CSS variables, base resets, and
+            custom animation keyframes used site-wide.
+            Tailwind's @apply is used for reusable classes.
+   ============================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Design System: CSS Custom Properties --- */
+/* These variables ensure color consistency across all components */
+:root {
+  --color-primary:   #0066CC;  /* Industrial blue — buttons, links, highlights */
+  --color-secondary: #FF6B00;  /* Safety orange — accent, hover states, badges */
+  --color-dark:      #0a0f1e;  /* Deep navy — main page background */
+  --color-card:      #111827;  /* Slightly lighter — card backgrounds */
+  --color-glass:     rgba(255, 255, 255, 0.05); /* Glassmorphism tint */
+  --color-border:    rgba(0, 102, 204, 0.3);    /* Subtle blue glow borders */
+  --color-text:      #E5E7EB;  /* Primary text — off-white for dark backgrounds */
+  --color-muted:     #6B7280;  /* Secondary text — labels, captions, placeholders */
+}
+
+body {
+  background-color: var(--color-dark);
+  color: var(--color-text);
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%; /* iOS: prevent font scaling in landscape */
+  text-size-adjust: 100%;
+}
+
+/* Quiet industrial texture for inner pages: restrained grid + soft grain. */
+.industrial-surface {
+  position: relative;
+  isolation: isolate;
+}
+
+.industrial-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 25% 15%, rgba(0, 102, 204, 0.08), transparent 30%),
+    radial-gradient(circle at 85% 40%, rgba(255, 255, 255, 0.035), transparent 26%);
+  background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%;
+  mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+}
+
+.quiet-card-motion {
+  transition: transform 240ms ease, background-color 240ms ease, border-color 240ms ease;
+}
+
+.quiet-card-motion:hover {
+  transform: translateY(-3px);
+}
+
+/* ============================================
+   MOBILE BASE RESETS
+   Prevents common mobile browser quirks
+   ============================================ */
+
+/* 📱 MOBILE: Prevents horizontal scroll from overflowing elements */
+html, body {
+  overflow-x: hidden;        /* No sideways scroll on mobile */
+  -webkit-overflow-scrolling: touch; /* Smooth momentum scroll on iOS */
+  scroll-behavior: smooth;   /* Smooth anchor link scrolling */
+}
+
+/* 📱 MOBILE: Improves tap target sizing across all interactive elements */
+* {
+  -webkit-tap-highlight-color: transparent; /* Removes blue flash on tap (Android) */
+  touch-action: manipulation;               /* Removes 300ms tap delay on mobile */
+}
+
+/* ============================================
+   TOUCH-SPECIFIC INTERACTION STYLES
+   ============================================ */
+
+/* 📱 MOBILE: Swipeable product gallery */
+.product-gallery {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;     /* Snaps to each image */
+  -webkit-overflow-scrolling: touch; /* Momentum scroll on iOS */
+  scrollbar-width: none;             /* Hide scrollbar on Firefox */
+}
+
+.product-gallery::-webkit-scrollbar {
+  display: none; /* Hide scrollbar on Chrome/Safari */
+}
+
+.product-gallery-item {
+  scroll-snap-align: start; /* Each item snaps to left edge */
+  flex-shrink: 0;           /* Prevent items from squishing */
+}
+
+/* 📱 MOBILE: Swipeable navigation dots indicator */
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+/* 📱 MOBILE: Tap ripple effect on buttons */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.btn-ripple:active::after {
+  opacity: 0.1; /* 📱 Brief white flash on tap */
+}
+
+/* ============================================
+   SAFE AREA INSETS
+   Handles iPhone notch, Dynamic Island, home indicator
+   ============================================ */
+
+.navbar-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+.sticky-bottom-bar {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+.page-container {
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* --- Custom Keyframe Animations --- */
+
+/* Float: gentle up-down loop for product cards at idle state */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }   /* Start and end at normal position */
+  50%       { transform: translateY(-8px); } /* Peak: 8px above normal */
+}
+
+/* Shimmer: left-to-right light sweep for CTA button hover effect */
+@keyframes shimmer {
+  0%   { background-position: -200% center; } /* Start shimmer off-screen left */
+  100% { background-position: 200% center; }  /* End shimmer off-screen right */
+}
+
+/* Pulse Glow: breathing glow effect for active/highlighted elements */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 102, 204, 0.4); } /* Dim glow */
+  50%       { box-shadow: 0 0 30px rgba(0, 102, 204, 0.8); } /* Bright glow */
+}
+
+/* Marquee: infinite horizontal scroll */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- Reusable Component Classes --- */
+@layer components {
+
+  /* Glass card style: dark tint + blur + subtle border */
+  /* Apply with className="glass-card" on any card element */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  /* Primary gradient button with shimmer on hover */
+  .btn-primary {
+    @apply bg-gradient-to-r from-[#0066CC] to-[#0052a3]
+           text-white font-semibold px-6 py-3 rounded-lg
+           hover:scale-105 transition-all duration-300;
+  }
+
+  /* Section heading style used on all pages */
+  .section-heading {
+    @apply text-4xl md:text-5xl font-bold text-white font-rajdhani tracking-wide;
+  }
+}
