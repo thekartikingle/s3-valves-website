@@ -36,7 +36,7 @@ import { motion, useInView } from "framer-motion";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { siteConfig } from "@/config/site";
-import { ArrowRight, ShieldCheck, Settings, Award, Flame, Droplet, FlaskConical, Wheat, Route, ActivitySquare, Factory, DraftingCompass, ClipboardCheck, PenTool, Wrench, PackageCheck, Truck } from "lucide-react";
+import { ArrowRight, ShieldCheck, Settings, Award, Flame, Droplet, FlaskConical, Wheat, Route, ActivitySquare, Factory, DraftingCompass, ClipboardCheck, PenTool, Wrench, PackageCheck, Truck, Download, FileText } from "lucide-react";
 
 // --- Form/Particle initialization State ---
 // This ensures that particles engine is only loaded once
@@ -65,6 +65,17 @@ const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
 };
+
+const brochureLinks = [
+  {
+    name: "Company Brochure",
+    href: "/brochure/S3-Valves-Brochure%20(1).pdf",
+  },
+  {
+    name: "Consultancy Brochure",
+    href: "/brochure/S3-Valves-Consultancy-Brochure.pdf",
+  },
+];
 
 // --- Custom Stats Hook ---
 // Hook to handle IntersectionObserver logic and number counting
@@ -236,25 +247,27 @@ export default function HomePage() {
                 Industrial Grade Dependability
               </motion.p>
 
-              {/* Animated Main Headline */}
-              <motion.h1
-                variants={heroTextVariants}
-                transition={{ duration: 0.6 }}
-                // 📱 MOBILE: Responsive fluid typography scaling up to cinematic desktop
-                className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-rajdhani font-bold text-white mb-2 md:mb-6 leading-tight"
-              >
-                Mastering the Flow with <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00aaff]">Precision</span>
-              </motion.h1>
+              <div className="rounded-xl bg-[#06162f]/90 px-3 py-4 shadow-[0_14px_34px_rgba(0,0,0,0.35)] md:contents md:bg-transparent md:p-0 md:shadow-none">
+                {/* Animated Main Headline */}
+                <motion.h1
+                  variants={heroTextVariants}
+                  transition={{ duration: 0.6 }}
+                  // 📱 MOBILE: Dark blue backing and brighter title color preserve readability over the image.
+                  className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-rajdhani font-bold text-[#f4fbff] md:text-white mb-2 md:mb-6 leading-tight"
+                >
+                  Mastering the Flow with <span className="text-[#72d7ff] md:text-transparent md:bg-clip-text md:bg-gradient-to-r md:from-primary md:to-[#00aaff]">Precision</span>
+                </motion.h1>
 
-              {/* Animated Subtitle */}
-              <motion.p
-                variants={heroTextVariants}
-                transition={{ duration: 0.6 }}
-                // 📱 MOBILE: Constrain width & use text-sm to preserve readability on narrow screens
-                className="mt-4 md:mt-6 text-sm sm:text-base md:text-lg text-white/80 md:text-text mb-4 md:mb-10 max-w-sm sm:max-w-xl mx-auto lg:mx-0 leading-relaxed"
-              >
-                {siteConfig.description}
-              </motion.p>
+                {/* Animated Subtitle */}
+                <motion.p
+                  variants={heroTextVariants}
+                  transition={{ duration: 0.6 }}
+                  // 📱 MOBILE: Constrain width & use text-sm to preserve readability on narrow screens
+                  className="mt-4 md:mt-6 text-sm sm:text-base md:text-lg text-white/90 md:text-text mb-0 md:mb-10 max-w-sm sm:max-w-xl mx-auto lg:mx-0 leading-relaxed"
+                >
+                  {siteConfig.description}
+                </motion.p>
+              </div>
 
               {/* 📱 MOBILE: Hero Image Display Card (Visible only on mobile, placed between text and buttons) */}
               <motion.div
@@ -289,9 +302,28 @@ export default function HomePage() {
                 <Link href="/products" className="btn-primary w-full sm:w-auto flex items-center justify-center gap-2 py-4 active:scale-95 btn-ripple">
                   Explore Products <ArrowRight size={18} />
                 </Link>
-                <Link href="/contact" className="w-full sm:w-auto px-8 py-4 rounded-lg border border-white/30 active:bg-white/10 hover:bg-white/10 transition-colors font-semibold text-white text-center btn-ripple">
-                  Request Quote
-                </Link>
+                <div className="grid w-full gap-3 sm:w-auto sm:grid-cols-2">
+                  {brochureLinks.map((brochure) => (
+                    <a
+                      key={brochure.name}
+                      href={brochure.href}
+                      download
+                      className="group flex min-h-14 items-center justify-between gap-3 rounded-lg border border-white/20 bg-white/[0.06] px-4 py-3 text-left font-semibold text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all duration-300 active:scale-95 active:border-primary/60 active:bg-primary/15 md:hover:border-primary/50 md:hover:bg-white/10"
+                    >
+                      <span className="flex min-w-0 items-center gap-3">
+                        <span className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-primary/15 text-primary">
+                          <FileText size={17} />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block truncate text-sm leading-tight">{brochure.name}</span>
+                          <span className="mt-0.5 flex items-center gap-1 text-[11px] uppercase tracking-[0.14em] text-white/45">
+                            PDF <Download size={12} />
+                          </span>
+                        </span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </motion.div>
             </motion.div>
 

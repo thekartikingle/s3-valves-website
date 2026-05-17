@@ -34,7 +34,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { products } from "@/data/products";
-import { ArrowRight, Search, Filter } from "lucide-react";
+import { ArrowRight, Search, Filter, Download, FileText } from "lucide-react";
 
 // --- Animation Variants ---
 // Stagger wrapper: delays the appearance of each product card by 0.1s
@@ -82,11 +82,29 @@ export default function ProductsPage() {
       {/* bg-gradient adds a subtle glow effect matching the primary brand color */}
       <section className="pt-24 pb-16 px-6 md:px-12 bg-gradient-to-b from-primary/10 to-transparent border-b border-white/5">
         <div className="container mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="section-heading mb-4">Our Complete Catalog</h1>
-            <p className="text-muted text-lg max-w-2xl">
-              Engineered for excellence. Explore our comprehensive range of industrial flow control solutions meeting the highest industry standards.
-            </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+          >
+            <div>
+              <h1 className="section-heading mb-4">Our Complete Catalog</h1>
+              <p className="text-muted text-lg max-w-2xl">
+                Engineered for excellence. Explore our comprehensive range of industrial flow control solutions meeting the highest industry standards.
+              </p>
+            </div>
+            <a
+              href="/brochure/S3-Valves-Brochure%20(1).pdf"
+              download
+              className="group inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-lg border border-primary/35 bg-primary/10 px-5 py-3 font-rajdhani text-base font-bold tracking-wide text-white shadow-[0_18px_45px_rgba(0,102,204,0.14)] transition-all duration-300 active:scale-95 active:bg-primary/20 sm:w-auto md:hover:border-primary/70 md:hover:bg-primary/15"
+            >
+              <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/15 text-primary">
+                <FileText size={17} />
+              </span>
+              Download Company Brochure
+              <Download size={16} className="text-white/55 transition-colors group-hover:text-primary" />
+            </a>
           </motion.div>
         </div>
       </section>

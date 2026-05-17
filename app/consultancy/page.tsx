@@ -10,7 +10,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import { useState, useEffect, useRef } from "react";
-import { X, ChevronDown, ChevronUp, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronDown, ChevronUp, ArrowRight, ChevronLeft, ChevronRight, Download, FileText } from "lucide-react";
 import Link from "next/link";
  
 /* ─── DATA ───────────────────────────────────────────────────── */
@@ -663,6 +663,17 @@ export default function ConsultancyPage() {
             <span className="rounded-full border border-primary/30 bg-primary/10 px-5 py-2.5 font-rajdhani text-base font-bold tracking-wide text-white shadow-[0_0_24px_rgba(0,102,204,0.12)] sm:text-lg">
               Design &amp; Analysis, Simulation and Manufacturing, Full Scope
             </span>
+            <a
+              href="/brochure/S3-Valves-Consultancy-Brochure.pdf"
+              download
+              className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-white/15 bg-white/[0.05] px-5 py-2.5 font-rajdhani text-base font-bold tracking-wide text-white shadow-[0_0_24px_rgba(0,102,204,0.1)] backdrop-blur-md transition-all duration-300 active:scale-95 active:border-primary/55 active:bg-primary/15 hover:border-primary/45 hover:bg-white/10 sm:text-lg"
+            >
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-primary/15 text-primary">
+                <FileText size={15} />
+              </span>
+              Download Consultancy Brochure
+              <Download size={15} className="text-white/50" />
+            </a>
           </motion.div>
         </div>
  

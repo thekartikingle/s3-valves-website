@@ -118,13 +118,37 @@ export default function Navbar() {
         </nav>
 
         {/* --- Mobile Menu Toggle --- */}
-        <button
-          className="md:hidden text-white"
+        <motion.button
+          className="relative md:hidden grid h-11 w-11 place-items-center overflow-hidden rounded-xl border border-white/15 bg-white/[0.07] text-white shadow-lg shadow-primary/10 backdrop-blur-xl"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle Menu"
+          aria-expanded={mobileMenuOpen}
+          whileTap={{ scale: 0.92 }}
+          animate={{
+            borderColor: mobileMenuOpen ? "rgba(0, 102, 204, 0.65)" : "rgba(255, 255, 255, 0.15)",
+            boxShadow: mobileMenuOpen
+              ? "0 14px 34px rgba(0, 102, 204, 0.28)"
+              : "0 10px 28px rgba(0, 0, 0, 0.2)",
+          }}
+          transition={{ type: "spring", stiffness: 420, damping: 32 }}
         >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          <motion.span
+            className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.16),transparent_44%,rgba(0,102,204,0.22))]"
+            animate={{ opacity: mobileMenuOpen ? 1 : 0.45 }}
+          />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={mobileMenuOpen ? "close" : "menu"}
+              className="relative z-10"
+              initial={{ opacity: 0, rotate: -45, scale: 0.72 }}
+              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              exit={{ opacity: 0, rotate: 45, scale: 0.72 }}
+              transition={{ type: "spring", stiffness: 520, damping: 34 }}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.span>
+          </AnimatePresence>
+        </motion.button>
       </div>
 
       {/* --- Mobile Navigation Dropdown --- */}
@@ -138,15 +162,16 @@ export default function Navbar() {
           // absolute top-full: positions exactly under the header
           // bg-[#0a0f1e]: solid static dark color, removed transparency
           <motion.div
-            className="absolute top-full left-0 right-0 bg-[#0a0f1e] shadow-2xl flex flex-col lg:hidden border-b border-white/10 overflow-hidden"
+            className="absolute top-full left-0 right-0 flex max-h-[calc(100svh-4rem)] flex-col overflow-x-hidden overflow-y-auto border-b border-white/10 bg-[#0a0f1e]/95 shadow-2xl shadow-primary/10 backdrop-blur-2xl lg:hidden"
             // 📱 ANIMATION: Modern folding dropdown from top
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: -18, clipPath: "inset(0 0 100% 0 round 0 0 28px 28px)" }}
+            animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0 round 0 0 28px 28px)" }}
+            exit={{ opacity: 0, y: -12, clipPath: "inset(0 0 100% 0 round 0 0 28px 28px)" }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,102,204,0.16),transparent_36%),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[length:100%_100%,56px_56px]" />
             {/* 📱 MOBILE: Each nav link — 56px min height for comfortable tapping */}
-            <nav className="flex flex-col pt-2 px-6">
+            <nav className="relative flex flex-col px-5 pt-4">
               {navLinks.map((link, i) => (
                 <MotionLink
                   key={link.name}
@@ -156,30 +181,41 @@ export default function Navbar() {
                   // 📱 MOBILE: Large comfortable tap targets
                   // py-4: vertical padding for tap area
                   // active:text-primary instead of hover
-                  className={`py-4 text-2xl font-semibold border-b border-white/10 flex items-center justify-between active:text-primary ${
+                  className={`group flex min-h-12 items-center justify-between rounded-xl border border-white/0 px-3 py-2.5 text-base font-semibold active:text-primary ${
                     pathname === link.path ? "text-primary" : "text-white"
                   }`}
                   // 📱 STAGGER: Each item drops down slightly
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  initial={{ opacity: 0, x: -18, filter: "blur(8px)" }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                    filter: "blur(0px)",
+                    backgroundColor: pathname === link.path ? "rgba(0, 102, 204, 0.12)" : "rgba(255, 255, 255, 0)",
+                    borderColor: pathname === link.path ? "rgba(0, 102, 204, 0.28)" : "rgba(255, 255, 255, 0)",
+                  }}
+                  transition={{ delay: 0.08 + i * 0.055, duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {link.name}
                   {/* 📱 MOBILE: Arrow icon shows this is tappable */}
-                  <ChevronRight className="w-5 h-5 text-primary" />
+                  <ChevronRight className="h-4 w-4 text-primary transition-transform duration-300 group-active:translate-x-1" />
                 </MotionLink>
               ))}
             </nav>
 
             {/* 📱 MOBILE: Contact info at bottom of menu */}
-            <div className="mt-4 px-6 pb-8">
+            <motion.div
+              className="relative mt-3 px-6 pb-7"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.48, duration: 0.35 }}
+            >
               {siteConfig.contact.phone.length > 0 && (
                 <a href={`tel:${siteConfig.contact.phone[0].replace(/\s/g, '')}`} className="flex items-center gap-3 py-3 text-white/70">
                   <Phone className="w-5 h-5 text-primary" />
                   {siteConfig.contact.phone[0]}
                 </a>
               )}
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
