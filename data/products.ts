@@ -48,7 +48,7 @@ export const products: Product[] = [
     // TODO: Replace placeholder description with actual product copy
     description: "S3 Ball Valves offer reliable shutoff and control for a wide range of liquids and gases. Engineered for low pressure drop and long service life, these valves feature robust bodies designed to excel in demanding environments.",
     // TODO: Add actual product image to public/images/products/
-    image: "/images/products/ballvalue.jpeg",
+    image: "/images/products/ballvalue.png",
     features: [
       "Full bore & reduced bore options", // Full bore = same diameter as pipe
       "Fire safe design (API 607)",        // Prevents leakage in fire conditions
@@ -81,7 +81,7 @@ export const products: Product[] = [
     name: "Gate Valve",
     tagline: "Unrestricted flow linear motion valve",
     description: "S3 Gate Valves are ideal for full flow shut-off services with minimal pressure drop. Their solid or flexible wedge design ensures tight sealing and dependable isolation in high-pressure networks.",
-    image: "/images/products/gatevalue.jpeg",
+    image: "/images/products/gatevalue.png",
     features: [
       "Solid, flexible & split wedge designs",
       "Outside Screw & Yoke (OS&Y)",
@@ -111,7 +111,7 @@ export const products: Product[] = [
     name: "Globe Valve Y type",
     tagline: "Precision throttling in linear motion",
     description: "Designed primarily to throttle flow or provide regular shut-off, S3 Globe Valves feature contoured plugs that grant proportional flow behavior and excellent resistance to wear.",
-    image: "/images/products/globevalue.jpeg",
+    image: "/images/products/globevalue.png",
     features: [
       "Parabolic, plug, and flat disk options",
       "Excellent throttling characteristics",
@@ -140,7 +140,7 @@ export const products: Product[] = [
     name: "Check Valve",
     tagline: "Backflow prevention automatically",
     description: "S3 Check Valves permit flow in one direction and automatically close to prevent backflow, safeguarding critical pumps and pipeline equipment from damage.",
-    image: "/images/products/checkvalue.jpeg",
+    image: "/images/products/checkvalue.png",
     features: [
       "Swing and Lift check designs",
       "Low pressure drop",
@@ -169,7 +169,7 @@ export const products: Product[] = [
     name: "Butterfly Valve",
     tagline: "Compact quarter-turn disc valve",
     description: "Extremely lightweight and cost-effective, S3 Butterfly Valves deliver fast operation and bubble-tight shut-off in a compact profile.",
-    image: "/images/products/butterflyvalue.jpeg",
+    image: "/images/products/butterflyvalue.png",
     features: [
       "Centric and eccentric designs",
       "Replaceable seat",
@@ -195,10 +195,10 @@ export const products: Product[] = [
   // ---- 6. Plug Valve ----
   {
     slug: "globe-valve-angle-type",
-    name: "Globe Valve Angle type", 
+    name: "Globe Valve Angle type",
     tagline: "Angular flow control valve",
     description: "S3 Globe Valves provide precise flow control with a linear motion stem, ensuring reliable shut-off and excellent throttling performance in demanding applications.",
-    image: "/images/products/anglevalue.jpeg",
+    image: "/images/products/anglevalue.png",
     features: [
       "Lubricated and non-lubricated models",
       "Minimal maintenance",
@@ -227,7 +227,7 @@ export const products: Product[] = [
     name: "Diaphragm Valve",
     tagline: "Pinch-action elastomeric seal",
     description: "The S3 Diaphragm Valve isolates the working parts from the process media, ensuring ultimate purity and zero contamination in sanitary pipelines.",
-    image: "/images/products/diaphgramvalue.jpeg",
+    image: "/images/products/diaphgramvalue.png",
     features: [
       "Weir and straight-through designs",
       "Various lining materials (PTFE, Rubber)",
@@ -256,7 +256,7 @@ export const products: Product[] = [
     name: "Safety Relief Valve",
     tagline: "Overpressure protection safety device",
     description: "Essential for equipment security, S3 Safety Relief Valves instantly open at predetermined pressures to vent destructive overpressure and protect your infrastructure.",
-    image: "/images/products/safetyvalue.jpeg",
+    image: "/images/products/safetyvalue.png",
     features: [
       "Spring-loaded pop-action",
       "Adjustable blowdown",
@@ -285,7 +285,7 @@ export const products: Product[] = [
     name: "Strainer",
     tagline: "Pipeline debris protection",
     description: "S3 Strainers protect valves, pumps, meters, and downstream equipment by filtering scale, weld slag, and solid particles from process lines. Built for reliable service and easy screen cleaning, they help maintain steady flow and reduce maintenance downtime.",
-    image: "/images/products/strainer.jpeg",
+    image: "/images/products/strainer.png",
     features: [
       "Y-type and basket type options",
       "Removable stainless steel screen",
