@@ -632,7 +632,7 @@ export default function ConsultancyPage() {
             transition={{ duration: 0.45 }}
             className="font-mono text-base font-bold uppercase tracking-widest text-primary sm:text-lg"
           >
-            {siteConfig.name} — Industrial Valve Consultancy
+            {siteConfig.name} — Consultancy Services
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}

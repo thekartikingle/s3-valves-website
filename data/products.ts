@@ -376,7 +376,7 @@ export const products: Product[] = [
     name: "Sight Glass with NRV",
     tagline: "Visual flow check with backflow protection",
     description: "S3 Sight Glass with NRV combines clear inline flow visibility with non-return valve protection in one compact assembly. It helps operators verify flow condition while automatically preventing reverse flow, making it suitable for pump discharge lines, process pipelines, and utility systems.",
-    image: "/images/products/sight glasss.png",
+    image: "/images/products/nrv.png",
     features: [
       "Integrated sight glass and non-return valve",
       "Clear visual flow monitoring",
