@@ -274,9 +274,9 @@ export default function HomePage() {
                 variants={heroTextVariants}
                 transition={{ duration: 0.6 }}
                 // Extensively reduced margin-top (mt-2) and margin-bottom (mb-6) to tighten gap to text and buttons
-                className="lg:hidden relative w-full h-[250px] sm:h-[350px] mt-2 mb-6"
+                className="lg:hidden relative w-full h-[min(48svh,360px)] sm:h-[min(52svh,430px)] mt-2 mb-6"
               >
-                <div className="glass-card p-3 rounded-2xl w-full h-full shadow-2xl border border-white/10 overflow-hidden group">
+                <div className="glass-card p-1.5 rounded-2xl w-full h-full shadow-2xl border border-white/10 overflow-hidden group">
                   <div className="relative w-full h-full rounded-xl overflow-hidden bg-black/40">
                     <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 duration-500" />
                     <Image
@@ -284,7 +284,7 @@ export default function HomePage() {
                       alt="Collection of S3 Valves"
                       fill
                       priority
-                      className="object-contain p-4 drop-shadow-2xl md:group-hover:scale-105 transition-transform duration-700"
+                      className="object-contain p-1 drop-shadow-2xl md:group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>
                 </div>
@@ -332,17 +332,17 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.95, x: 20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="hidden lg:block relative w-full h-[500px]"
+              className="hidden lg:block relative w-full h-[min(62vh,620px)] min-h-[460px]"
             >
-              <div className="glass-card p-3 rounded-2xl w-full h-full shadow-2xl border border-white/10 overflow-hidden group">
+              <div className="glass-card p-2 rounded-2xl w-full h-full shadow-2xl border border-white/10 overflow-hidden group">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-black/40">
                   <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 duration-500" />
                   <Image
-                    src="/images/mainn/herophotocard.png"
+                    src="/images/mainn/d0569d6e-7a08-4134-b82c-6c0b6697ee0d.png"
                     alt="Collection of S3 Valves"
                     fill
                     priority
-                    className="object-contain p-4 drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"
+                    className="object-contain p-2 drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
