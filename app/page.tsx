@@ -280,7 +280,7 @@ export default function HomePage() {
                   <div className="relative w-full h-full rounded-xl overflow-hidden bg-black/40">
                     <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 duration-500" />
                     <Image
-                      src="/images/mainn/herophotocard.png"
+                      src="/images/mainn/d0569d6e-7a08-4134-b82c-6c0b6697ee0d.png"
                       alt="Collection of S3 Valves"
                       fill
                       priority
